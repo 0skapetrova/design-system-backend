@@ -1,0 +1,24 @@
+                                                              Table "public.phone_verifications"
+    Column     |           Type            | Collation | Nullable |               Default                | Storage  | Compression | Stats target | Description 
+---------------+---------------------------+-----------+----------+--------------------------------------+----------+-------------+--------------+-------------
+ id            | uuid                      |           | not null | gen_random_uuid()                    | plain    |             |              | 
+ phone         | text                      |           | not null |                                      | extended |             |              | 
+ code_hash     | text                      |           | not null |                                      | extended |             |              | 
+ status        | phone_verification_status |           | not null | 'pending'::phone_verification_status | plain    |             |              | 
+ attempts_left | integer                   |           | not null | 5                                    | plain    |             |              | 
+ verified_at   | timestamp with time zone  |           |          |                                      | plain    |             |              | 
+ used_at       | timestamp with time zone  |           |          |                                      | plain    |             |              | 
+ user_id       | uuid                      |           |          |                                      | plain    |             |              | 
+ created_at    | timestamp with time zone  |           | not null | now()                                | plain    |             |              | 
+ updated_at    | timestamp with time zone  |           | not null | now()                                | plain    |             |              | 
+ last_sent_at  | timestamp with time zone  |           | not null | now()                                | plain    |             |              | 
+ expires_at    | timestamp with time zone  |           | not null |                                      | plain    |             |              | 
+Indexes:
+    "phone_verifications_pkey" PRIMARY KEY, btree (id)
+    "phone_verifications_unique_pending_phone" UNIQUE, btree (phone) WHERE status = 'pending'::phone_verification_status
+Check constraints:
+    "phone_verifications_attempts_left_check" CHECK (attempts_left >= 0)
+Foreign-key constraints:
+    "phone_verifications_user_fk" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+Access method: heap
+
