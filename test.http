@@ -1,0 +1,6 @@
+POST http://localhost:3000/api/auth/request-code
+Content-Type: application/json
+
+{
+  "phone": "9650020648"
+}

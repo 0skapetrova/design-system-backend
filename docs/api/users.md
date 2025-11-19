@@ -84,8 +84,11 @@ POST /api/auth/verify-code
 ### 5.1 Request-code — успешный ответ
 ```json
 {
-  "attempts_left": 4,
-  "time_to_new_code_left": 30
+  "Status": "200 OK",
+  "Body":{
+    "attempts_left": 4,
+    "time_to_new_code_left": 30
+  },
 }
 ```
 ### 5.2 Request-code — ошибка
