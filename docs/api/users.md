@@ -80,6 +80,12 @@ POST /api/auth/verify-code
 
 Возможные ошибки: PHONE_INVALID, CODE_INVALID, CODE_EXPIRED, TOO_MANY_ATTEMPTS, PHONE_BLOCKED.
 
+#### 4.1.3 Получение текущего пользователя
+GET /api/auth/me
+Фронт вызывает этот эндпойнт без тела запроса, чтобы получить данные текущего пользователя. Бэк в теле ответа передает объект с данными текущего пользователя.
+
+Возможные ошибки: UNAUTORIZED, USER_NOT_FOUND
+
 ## 5. Примеры (success + error)
 ### 5.1 Request-code — успешный ответ
 ```json
@@ -105,5 +111,26 @@ POST /api/auth/verify-code
   "error": "CODE_INVALID",
   "message": "Введённый код неверный",
   "details": "Отправьте новый запрос"
+}
+```
+### 5.4 Me — успешный ответ
+```json
+{
+  "user": {
+    "id": "uuid",
+    "username": "sofia",
+    "phone": "79001234567",
+    "display_name": "Софья-Мария",
+    "avatar_url": null,
+    "created_at": "2024-01-01T12:00:00Z"
+  }
+}
+```
+### 5.5 Me — ошибка
+```json
+{
+  "error": "UNAUTHORIZED",
+  "message": "Пользователь не авторизован",
+  "details": "Требуется действующая сессия или токен"
 }
 ```
