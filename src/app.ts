@@ -7,11 +7,10 @@ import { errorMiddleware } from './middlewares/errorMiddleware';
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5174",
-    credentials: true,
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
+  origin: true,
+  credentials: true,
 }));
+
 
 app.use(loggerMiddleware)
 app.use(express.json());
