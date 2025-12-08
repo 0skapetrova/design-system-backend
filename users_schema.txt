@@ -1,0 +1,26 @@
+                                                             Table "public.users"
+      Column       |           Type           | Collation | Nullable |      Default      | Storage  | Compression | Stats target | Description 
+-------------------+--------------------------+-----------+----------+-------------------+----------+-------------+--------------+-------------
+ id                | uuid                     |           | not null | gen_random_uuid() | plain    |             |              | 
+ username          | text                     |           | not null |                   | extended |             |              | 
+ phone             | text                     |           | not null |                   | extended |             |              | 
+ display_name      | text                     |           |          |                   | extended |             |              | 
+ avatar_url        | text                     |           |          |                   | extended |             |              | 
+ is_active         | boolean                  |           | not null | true              | plain    |             |              | 
+ created_at        | timestamp with time zone |           | not null | now()             | plain    |             |              | 
+ updated_at        | timestamp with time zone |           | not null | now()             | plain    |             |              | 
+ password_hash     | text                     |           | not null |                   | extended |             |              | 
+ phone_verified_at | timestamp with time zone |           | not null |                   | plain    |             |              | 
+ last_login_at     | timestamp with time zone |           |          |                   | plain    |             |              | 
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
+    "users_phone_key" UNIQUE CONSTRAINT, btree (phone)
+    "users_username_key" UNIQUE CONSTRAINT, btree (username)
+Check constraints:
+    "users_username_check" CHECK (username ~ '^[a-z0-9_-]{5,20}$'::text)
+Referenced by:
+    TABLE "projects" CONSTRAINT "projects_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+Triggers:
+    users_set_updated_at BEFORE UPDATE ON users FOR EACH ROW EXECUTE FUNCTION set_updated_at()
+Access method: heap
+
