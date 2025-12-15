@@ -115,8 +115,7 @@ GET /api/auth/me
 ```
 ### 5.4 Me — успешный ответ
 ```json
-{
-  "user": {
+  {
     "id": "uuid",
     "username": "sofia",
     "phone": "79001234567",
@@ -124,7 +123,7 @@ GET /api/auth/me
     "avatar_url": null,
     "created_at": "2024-01-01T12:00:00Z"
   }
-}
+
 ```
 ### 5.5 Me — ошибка
 ```json
