@@ -2,7 +2,6 @@ import { ERRORS } from "../utils/errors/errorCatalog";
 
 const ERROR_CODES = Object.keys(ERRORS);
 
-
 export const openapiDocument = {
     openapi: "3.0.0",
     info: {
