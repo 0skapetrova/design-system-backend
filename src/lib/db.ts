@@ -1,6 +1,5 @@
 import { Pool } from "pg";
 
-
 export const db = new Pool({
     host: process.env.PGHOST ?? "localhost",
     port: Number(process.env.PGPORT) || 5432,

@@ -22,7 +22,6 @@ import { DEV_USER_ID } from "../src/constants/devUser"
 
 // 2.3. Этот пользователь используется как dev-текущий для эндпойнта /me
 
-
 const DEV_USER: TUserDB = {
     id: DEV_USER_ID,
     username: "sofia_maria",
